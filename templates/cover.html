@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block title %}MyPizza | Delicious as F{% endblock %}
+
+{% block additional_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/cover-css.css') }}">
+{% endblock %}
+
+{% include "header.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row text-center">
+        <h2>Pizza</h2>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-6 py-2">
+            <div class="image-margin">
+                <img style="width: 290px; height: 250px;" src="{{ url_for('static', filename='images/Pizzas-images/500px-Classsic.jpg') }}" alt="navbar-pizza-img">
+            </div>
+            <div class="pizza-detail-box">
+                <div>
+                    <h3>Classic</h3>
+                </div>
+                <br>
+                <div>
+                    <p>Ham, mushrooms, mozzarella cheese, herb tomato sauce</p>
+                </div>
+                <br>
+                <div>
+                    <h4 style="display: inline-block;">45,99 PLN</h4>
+                    <button role="button" style="margin-left: 4vh;">Add Pizza</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 py-2">
+            <div class="image-margin">
+                <img style="width: 290px; height: 250px;" src="{{ url_for('static', filename='images/Pizzas-images/500px-SweetPeperoni.jpg') }}" alt="navbar-pizza-img">
+            </div>
+            <div class="pizza-detail-box">
+                <div>
+                    <h3>Sweet Peperoni</h3>
+                </div>
+                <br>
+                <div>
+                    <p>Pepperoni, corn, mozzarella, garlic sauce</p>
+                </div>
+                <br>
+                <div>
+                    <h4 style="display: inline-block;">50,99 PLN</h4>
+                    <button role="button" style="margin-left: 4vh;">Add Pizza</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 py-2">
+            <div class="image-margin">
+                <img style="width: 290px; height: 250px;" src="{{ url_for('static', filename='images/Pizzas-images/500px-Hawai.jpg') }}" alt="navbar-pizza-img">
+            </div>
+            <div class="pizza-detail-box">
+                <div>
+                    <h3>Hawaii</h3>
+                </div>
+                <br>
+                <div>
+                    <p>Ham, pineapple, mozzarella cheese, herb tomato sauce</p>
+                </div>
+                <br>
+                <div>
+                    <h4 style="display: inline-block;">55,99 PLN</h4>
+                    <button role="button" style="margin-left: 4vh;">Add Pizza</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 py-2">
+            <div class="image-margin">
+        <img style="width: 290px; height: 250px;" src="{{ url_for('static', filename='images/Pizzas-images/500px-Grece.png') }}" alt="navbar-pizza-img">
+            </div>
+            <div class="pizza-detail-box">
+                <div>
+                    <h3>Greece</h3>
+                </div>
+                <br>
+                <div>
+                    <p class="truncate-text">Mediterranean cheese, cherry tomatoes, black olives, mozzarella, white sauce</p>
+                </div>
+                <br>
+                <div>
+                    <h4 style="display: inline-block;">55,99 PLN</h4>
+                    <button role="button" style="margin-left: 4vh;">Add Pizza</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-6 py-2">
+            <div class="image-margin">
+                <img style="width: 290px; height: 250px;" src="{{ url_for('static', filename='images/Pizzas-images/500px-HotChicken.jpg') }}" alt="navbar-pizza-img">
+            </div>
+            <div class="pizza-detail-box">
+                <div>
+                    <h3>Hot Chicken</h3>
+                </div>
+                <br>
+                <div>
+                    <p>Ham, mushrooms, mozzarella cheese, herb tomato sauce</p>
+                </div>
+                <br>
+                <div>
+                    <h4 style="display: inline-block;">41,99 PLN</h4>
+                    <button role="button" style="margin-left: 4vh;">Add Pizza</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 py-2">
+            <div class="image-margin">
+                <img style="width: 290px; height: 250px;" src="{{ url_for('static', filename='images/Pizzas-images/500px-Americana.jpg') }}" alt="navbar-pizza-img">
+            </div>
+            <div class="pizza-detail-box">
+                <div>
+                    <h3>Americana</h3>
+                </div>
+                <br>
+                <div>
+                    <p>Pepperoni, corn, mozzarella, garlic sauce</p>
+                </div>
+                <br>
+                <div>
+                    <h4 style="display: inline-block;">47,99 PLN</h4>
+                    <button role="button" style="margin-left: 4vh;">Add Pizza</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 py-2">
+            <div class="image-margin">
+                <img style="width: 290px; height: 250px;" src="{{ url_for('static', filename='images/Pizzas-images/500px-Chicken.png') }}" alt="navbar-pizza-img">
+            </div>
+            <div class="pizza-detail-box">
+                <div>
+                    <h3>Chicken</h3>
+                </div>
+                <br>
+                <div>
+                    <p>Ham, pineapple, mozzarella cheese, herb tomato sauce</p>
+                </div>
+                <br>
+                <div>
+                    <h4 style="display: inline-block;">49,99 PLN</h4>
+                    <button role="button" style="margin-left: 4vh;">Add Pizza</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 py-2">
+            <div class="image-margin">
+                <img style="width: 290px; height: 250px;" src="{{ url_for('static', filename='images/Pizzas-images/500px-Cheese.jpg') }}" alt="navbar-pizza-img">
+            </div>
+            <div class="pizza-detail-box">
+                <div>
+                    <h3>Cheese</h3>
+                </div>
+                <br>
+                <div>
+                    <p class="truncate-text">Mediterranean cheese, cherry tomatoes, black olives, mozzarella, white sauce</p>
+                </div>
+                <br>
+                <div>
+                    <h4 style="display: inline-block;">44,99 PLN</h4>
+                    <button role="button" style="margin-left: 4vh;">Add Pizza</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

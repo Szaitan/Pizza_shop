@@ -1,0 +1,30 @@
+br {
+    height: 10px;
+}
+
+body {
+    background-color: #ffffcc;
+}
+
+.pizza-detail-box {
+    background-color: black;
+    color: white;
+    padding:5px;
+    width: 290px;
+    margin: 0 5px;
+}
+
+.image-margin {
+    margin: 0 5px;
+}
+
+
+
+.truncate-text {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;       /* Limit to two lines */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;     /* Display ellipsis (...) when text overflows */
+            max-width: 300px;  /* Adjust this value to control the width */
+}

@@ -1,0 +1,39 @@
+<style>
+    .navbar-custom {
+        background-color: #000000;
+    }
+
+    .navbar-custom .navbar-brand,
+    .navbar-custom .navbar-login {
+        font-size: 25px;
+        color: gold;
+    }
+
+    .navbar-custom .navbar-text {
+      font-size: 20px;
+      color: gold;
+    }
+
+    .navbar-custom .navbar-title {
+        text-decoration: none;
+        color: white;
+    }
+
+</style>
+
+<nav class="navbar navbar-custom navbar-expand justify-content-between container-fluid px-3">
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <a class="navbar-brand" href="{{ url_for('main_page')}}">
+      <img src="{{ url_for('static', filename='images/Navbar-Image/mypizza120.jpg') }}" alt="navbar-pizza-img">
+      <a class="navbar-title" href="{{ url_for('main_page') }}"><h3>MyPizza</h3></a>
+    </a>
+
+    <ul class="navbar-nav ms-auto nav-size">
+      <li class="nav-item">
+        <a href=""><img src="{{ url_for('static', filename='images/Navbar-Image/shop-basket50.png') }}" alt="navbar-pizza-img"></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--{{ url_for('main_page') }}-->

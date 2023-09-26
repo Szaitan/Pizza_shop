@@ -1,7 +1,3 @@
-br {
-    height: 10px;
-}
-
 body {
     background-color: #ffffcc;
 }
@@ -21,15 +17,16 @@ body {
 }
 
 .truncate-text {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;       /* Limit to two lines */
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;     /* Display ellipsis (...) when text overflows */
-            max-width: 300px;  /* Adjust this value to control the width */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;       /* Limit to two lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;     /* Display ellipsis (...) when text overflows */
+    max-width: 300px;  /* Adjust this value to control the width */
 }
 
 .pizzas-price {
     display: inline-block;
     padding: 10px;
 }
+

@@ -1,0 +1,45 @@
+body {
+    background-color: #ffffcc;
+}
+
+.pizzas-image {
+    background-image: url('/static/images/Pizza-Page-Images/Pizza-Page-Image.jpg');
+    background-size: cover;
+    background-position: center center;
+    height: 40vh;
+}
+
+.size-buttons {
+    height: 50px;
+    width: 150px;
+    margin: 10px;
+    background-color: black;
+    color: white;
+}
+
+.size-buttons:hover,
+.size-buttons.active {
+    background-color: yellow;
+    color: black;
+}
+
+.ready-buttons {
+    height: 50px;
+    width: 150px;
+    margin: 10px;
+    background-color: green;
+    color: white;
+}
+
+.ready-buttons:hover {
+    background-color: yellow;
+    color: black;
+}
+
+.your-pizza {
+    border-style: double;
+}
+
+#number {
+    display: inline-block;
+}

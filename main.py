@@ -1,4 +1,4 @@
-from flask import Flask, url_for, render_template, redirect
+from flask import Flask, url_for, render_template, redirect, request
 import os
 from flask_sqlalchemy import SQLAlchemy
 
@@ -20,10 +20,20 @@ class Pizza(db.Model):
     image = db.Column(db.String, nullable=False)
 
 
-@app.route("/")
+@app.route("/", methods=["POST", "GET"])
 def main_page():
+    if request.method == "POST":
+        print(request.form["total_pizza_cost"])
+        return redirect(url_for("main_page"))
     all_pizza_data = Pizza.query.all()
     return render_template("cover.html", all_pizza_data=all_pizza_data)
+
+
+@app.route("/pizza-creator", methods=["POST"])
+def pizza_page():
+    pizza_name = request.args.get("pizza_name")
+    pizza_cost = request.args.get("pizza_cost")
+    return render_template("pizza-page.html", pizza_name=pizza_name, pizza_cost=pizza_cost)
 
 
 if __name__ == "__main__":

@@ -1,7 +1,5 @@
 {% extends "base.html" %}
 
-{% block title %}MyPizza | Delicious as F{% endblock %}
-
 {% block additional_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/cover-css.css') }}">
 {% endblock %}
@@ -17,11 +15,11 @@
         {% for pizza in all_pizza_data: %}
             <div class="col-lg-3 col-md-6 py-2">
                 <div class="image-margin">
-                    <img class="pizzas-images" src="{{ url_for('static', filename='images/Pizzas-images/' + pizza.image) }}" alt="navbar-pizza-img">
+                    <img class="pizzas-images" src="{{ url_for('static', filename='images/Pizzas-Images/' + pizza.image) }}" alt="navbar-pizza-img">
                 </div>
                 <div class="pizza-detail-box">
                     <div>
-                        <h3>{{pizza.name}}</h3>
+                        <h3>{{ pizza.name }}</h3>
                     </div>
                     <br>
                     <div>
@@ -29,8 +27,10 @@
                     </div>
                     <br>
                     <div>
-                        <h4 class="pizzas-price">{{ pizza.price }} PLN</h4>
-                        <button role="button" style="margin-left: 4vh;">Add Pizza</button>
+                        <form action="{{ url_for('pizza_page', pizza_name=pizza.name, pizza_cost=pizza.price) }}" method="POST">
+                            <h4 class="pizzas-price">{{ pizza.price }} PLN</h4>
+                            <button type="submit" style="margin-left: 4vh;">Add Pizza</button>
+                        </form>
                     </div>
                 </div>
             </div>

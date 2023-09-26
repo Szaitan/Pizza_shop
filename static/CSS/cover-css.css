@@ -14,11 +14,11 @@ body {
     margin: 0 5px;
 }
 
-.image-margin {
+.pizzas-images {
     margin: 0 5px;
+    width: 290px;
+    height: 250px;
 }
-
-
 
 .truncate-text {
             display: -webkit-box;
@@ -27,4 +27,9 @@ body {
             overflow: hidden;
             text-overflow: ellipsis;     /* Display ellipsis (...) when text overflows */
             max-width: 300px;  /* Adjust this value to control the width */
+}
+
+.pizzas-price {
+    display: inline-block;
+    padding: 10px;
 }

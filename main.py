@@ -22,16 +22,8 @@ class Pizza(db.Model):
 
 @app.route("/")
 def main_page():
-    db.create_all()
-    pizza = Pizza(
-        name="Classic",
-        price=39.39,
-        ingredients="Ham, mushrooms, mozzarella cheese, herb tomato sauce",
-        image="500px-Classsic.jpg"
-    )
-    db.session.add(pizza)
-    db.session.commit()
-    return render_template("cover.html")
+    all_pizza_data = Pizza.query.all()
+    return render_template("cover.html", all_pizza_data=all_pizza_data)
 
 
 if __name__ == "__main__":

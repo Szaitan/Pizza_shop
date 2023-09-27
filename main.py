@@ -9,6 +9,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pizzas.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+basket_pizza_name_cost = []
 
 
 class Pizza(db.Model):
@@ -23,17 +24,35 @@ class Pizza(db.Model):
 @app.route("/", methods=["POST", "GET"])
 def main_page():
     if request.method == "POST":
-        print(request.form["total_pizza_cost"])
+        name_cost = []
+        name = request.args.get("pizza_name")
+        cost = request.form["total_pizza_cost"]
+        name_cost.append(name)
+        name_cost.append(cost)
+        basket_pizza_name_cost.append(name_cost)
         return redirect(url_for("main_page"))
+
     all_pizza_data = Pizza.query.all()
-    return render_template("cover.html", all_pizza_data=all_pizza_data)
+    if len(basket_pizza_name_cost) != 0:
+        return render_template("cover.html", all_pizza_data=all_pizza_data, plus_sign=len(basket_pizza_name_cost))
+    else:
+        return render_template("cover.html", all_pizza_data=all_pizza_data)
 
 
 @app.route("/pizza-creator", methods=["POST"])
 def pizza_page():
     pizza_name = request.args.get("pizza_name")
     pizza_cost = request.args.get("pizza_cost")
-    return render_template("pizza-page.html", pizza_name=pizza_name, pizza_cost=pizza_cost)
+    if len(basket_pizza_name_cost) != 0:
+        return render_template("pizza-page.html", pizza_name=pizza_name, pizza_cost=pizza_cost,
+                               plus_sign=len(basket_pizza_name_cost))
+    else:
+        return render_template("pizza-page.html", pizza_name=pizza_name, pizza_cost=pizza_cost)
+
+
+@app.route("/pizza-basket")
+def pizza_basket():
+    return render_template("basket-page.html", basket=basket_pizza_name_cost)
 
 
 if __name__ == "__main__":

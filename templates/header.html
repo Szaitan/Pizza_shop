@@ -18,20 +18,27 @@
         text-decoration: none;
         color: white;
     }
+    .navbar-sign {
+      color: #00b300;
+      font-size: 23px;
+    }
 
 </style>
 
 <nav class="navbar navbar-custom navbar-expand justify-content-between container-fluid px-3">
 
   <div class="collapse navbar-collapse" id="navbarNav">
-    <a class="navbar-brand" href="{{ url_for('main_page')}}">
+    <a class="navbar-brand" href="{{ url_for('main_page') }}">
       <img src="{{ url_for('static', filename='images/Navbar-Images/mypizza120.jpg') }}" alt="navbar-pizza-img">
       <a class="navbar-title" href="{{ url_for('main_page') }}"><h3>MyPizza</h3></a>
     </a>
 
     <ul class="navbar-nav ms-auto nav-size">
+      {% if plus_sign:%}
+        <p class="navbar-sign">+{{plus_sign}}</p>
+      {% endif %}
       <li class="nav-item">
-        <a href=""><img src="{{ url_for('static', filename='images/Navbar-Images/shop-basket50.png') }}" alt="navbar-pizza-img"></a>
+        <a href="{{url_for('pizza_basket') }}"><img src="{{ url_for('static', filename='images/Navbar-Images/shop-basket50.png') }}" alt="navbar-pizza-img"></a>
       </li>
     </ul>
   </div>

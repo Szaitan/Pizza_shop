@@ -20,8 +20,8 @@
     <div class="row text-center">
         <h2>Chose Size</h2>
         <div class="mx-auto" style="height: 70px; width: 600px;">
-            <button class="size-buttons size-option" data-option="size" data-price="5"><b>Small</b></button>
-            <button class="size-buttons size-option" data-option="size" data-price="0"><b>Medium</b></button>
+            <button class="size-buttons size-option" data-option="size" data-price="0"><b>Small</b></button>
+            <button class="size-buttons size-option" data-option="size" data-price="5"><b>Medium</b></button>
             <button class="size-buttons size-option" data-option="size" data-price="10"><b>Big</b></button>
         </div>
     </div>
@@ -29,7 +29,7 @@
     <div class="row text-center">
         <h2>Chose Dough</h2>
         <div class="mx-auto" style="height: 70px; width: 600px;">
-            <button class="size-buttons dough-option" data-option="dough" data-price="-3"><b>Thin</b></button>
+            <button class="size-buttons dough-option" data-option="dough" data-price="-4"><b>Thin</b></button>
             <button class="size-buttons dough-option" data-option="dough" data-price="6"><b>Thick</b></button>
         </div>
     </div>
@@ -47,7 +47,7 @@
             <button class="size-buttons decrement">-</button>
             <p id="number">1</p>
             <button class="size-buttons increment">+</button>
-            <form method="post" action="{{ url_for('main_page') }}">
+            <form method="post" action="{{ url_for('main_page', pizza_name=pizza_name) }}">
                 <input type="hidden" name="total_pizza_cost" id="total_pizza_cost" value="{{ pizza_cost }}">
                 <button class="ready-buttons" type="submit">Add Pizza</button>
             </form>

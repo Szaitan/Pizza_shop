@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block additional_css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/pizza-page-css.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/basket-page-css.css') }}">
 {% endblock %}
 
 {% block additional_js %}
@@ -13,22 +13,35 @@
 {% block content %}
 <div class="pizzas-image">
 </div>
+<br>
 <div class="container">
-    <table>
-        <tr>
-            <th>Product</th>
-            <th>Cost</th>
-        </tr>
-        {% for data in basket: %}
-        <tr>
-            <td>{{data[0]}}</td>
-            <td>{{data[1]}}</td>
-        </tr>
-        {% endfor %}
-        <tr>
-            <td>Total:</td>
-        </tr>
-    </table>
+    <div class="row">
+        <table class="table table-dark table-striped table-bordered table-text">
+            <thead>
+            <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Cost</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for data in basket: %}
+                <tr class>
+                    <td>{{data[0]}}</td>
+                    <td>{{data[1]}} PLN</td>
+                </tr>
+                {% endfor %}
+                <tr class="mx-auto">
+                    <td><p class="text-total">Total</p></td>
+                    <td><p class="text-total">{{ total_cost }} PLN</p></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <form action="{{ url_for('main_page', reset=True) }}" class="form-button-payment" method="POST">
+            <button type="submit" class="size-buttons">Go to Payment</button>
+        </form>
+    </div>
 </div>
 
 {% endblock %}

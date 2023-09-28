@@ -28,3 +28,7 @@ body {
     padding: 10px;
 }
 
+.add-button {
+    border-radius: 8px;
+    width: auto;
+}

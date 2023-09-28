@@ -1,3 +1,4 @@
+from _decimal import Decimal
 from flask import Flask, url_for, render_template, redirect, request
 import os
 from flask_sqlalchemy import SQLAlchemy
@@ -24,6 +25,11 @@ class Pizza(db.Model):
 @app.route("/", methods=["POST", "GET"])
 def main_page():
     if request.method == "POST":
+        if request.args.get("reset"):
+            print(True)
+            basket_pizza_name_cost.clear()
+            return redirect(url_for("main_page"))
+
         name_cost = []
         name = request.args.get("pizza_name")
         cost = request.form["total_pizza_cost"]
@@ -52,7 +58,10 @@ def pizza_page():
 
 @app.route("/pizza-basket")
 def pizza_basket():
-    return render_template("basket-page.html", basket=basket_pizza_name_cost)
+    total_cost = 0
+    for n in range(len(basket_pizza_name_cost)):
+        total_cost += float(basket_pizza_name_cost[n][1])
+    return render_template("basket-page.html", basket=basket_pizza_name_cost, total_cost=total_cost)
 
 
 if __name__ == "__main__":

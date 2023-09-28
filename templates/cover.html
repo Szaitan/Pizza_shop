@@ -13,7 +13,7 @@
     </div>
     <div class="row">
         {% for pizza in all_pizza_data: %}
-            <div class="col-lg-3 col-md-6 my-2">
+            <div class="col-xxl-3 col-lg-4 col-md-6 my-2">
                     <img class="pizzas-images" src="{{ url_for('static', filename='images/Pizzas-Images/' + pizza.image) }}" alt="navbar-pizza-img">
                     <div class="pizza-detail-box px-2">
                         <div>
@@ -26,7 +26,7 @@
                         <div>
                             <form action="{{ url_for('pizza_page', pizza_name=pizza.name, pizza_cost=pizza.price) }}" method="POST">
                                 <h4 class="pizzas-price">{{ pizza.price }} PLN</h4>
-                                <button type="submit" style="margin-left: 4vh;">Add Pizza</button>
+                                <button class="add-button" type="submit" style="margin-left: 3vh;">Add Pizza</button>
                             </form>
                         </div>
                     </div>

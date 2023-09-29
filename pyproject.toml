@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "pizza-shop-webapplication"
+version = "0.1.0"
+description = ""
+authors = ["Michał <m.krepiniewicz@gmail.com>"]
+readme = "README.md"
+packages = [{include = "pizza_shop_webapplication"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.9.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

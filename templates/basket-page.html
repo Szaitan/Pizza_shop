@@ -38,7 +38,7 @@
         </table>
     </div>
     <div class="row">
-        <form action="{{ url_for('main_page', reset=True) }}" class="form-button-payment" method="POST">
+        <form action="{{ url_for('create_checkout_session') }}" class="form-button-payment" method="POST">
             <button type="submit" class="size-buttons">Go to Payment</button>
         </form>
     </div>

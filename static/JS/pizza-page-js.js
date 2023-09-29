@@ -2,8 +2,7 @@ $(document).ready(function() {
     // Initialize selected options and initialCost
     var selectedOptions = {
         size: "",
-        dough: "",
-        cheese: ""
+        dough: ""
     };
 
     var initialCost = parseFloat($("#pizza_cost").text());
@@ -25,10 +24,6 @@ $(document).ready(function() {
             totalCost += parseFloat(selectedOptions.dough.attr("data-price"));
         }
 
-        // Add the selected cheese cost
-        if (selectedOptions.cheese !== "") {
-            totalCost += parseFloat(selectedOptions.cheese.attr("data-price"));
-        }
 
         // Multiply the total cost by the number of pizzas
         totalCost *= numberOfPizzas;
@@ -40,7 +35,7 @@ $(document).ready(function() {
     }
 
     // Button click event handler for size, dough, and cheese options
-    $(".size-option, .dough-option, .cheese-option").click(function() {
+    $(".size-option, .dough-option").click(function() {
         var optionType = $(this).attr("data-option");
 
         // Remove active class from all options of the same type

@@ -1,33 +1,94 @@
-from _decimal import Decimal
-from flask import Flask, url_for, render_template, redirect, request
+from flask import Flask, url_for, render_template, redirect, request, flash
+from forms import CreateLoginForm, CreateRegisterForm
 import os
 from flask_sqlalchemy import SQLAlchemy
 import stripe
+from flask_bootstrap import Bootstrap
+from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user
+from werkzeug.security import generate_password_hash, check_password_hash
+import email_validator
 
 stripe.api_key = os.environ.get("stripe_api_key")
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get('app_secret_key')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pizzas.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+Bootstrap(app)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 db = SQLAlchemy(app)
+
 basket_pizza_name_cost = []
 
 YOUR_DOMAIN = 'http://127.0.0.1:5000'  # Remmeber to change it at the very end!!!
 
 
-class Pizza(db.Model):
-    __tablename__ = "pizzas"
+class User(db.Model, UserMixin):
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False, primary_key=True)
-    price = db.Column(db.Float, nullable=False)
-    ingredients = db.Column(db.String, nullable=False)
-    image = db.Column(db.String, nullable=False)
+    login = db.Column(db.String)
+    email = db.Column(db.String, unique=True)
+    password = db.Column(db.String)
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return db.session.get(User, user_id)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login_page():
+    form = CreateLoginForm()
+    if form.validate_on_submit():
+        user_to_check = db.session.query(User).filter_by(email=form.e_mail.data).first()
+        if user_to_check is not None:
+            if check_password_hash(user_to_check.password, form.password.data):
+                login_user(user_to_check)
+                return redirect(url_for('main_page'))
+            else:
+                flash("Wrong Password. Try Again.")
+                return redirect(url_for('login_page'))
+        else:
+            flash("This user does not exists in database. Try again or contact administrator.")
+            return redirect(url_for('login_page'))
+    return render_template('login.html', form=form)
+
+
+@app.route('/logout')
+def logout_page():
+    logout_user()
+    return redirect(url_for('main_page'))
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register_page():
+    form = CreateRegisterForm()
+    print(1)
+    if form.validate_on_submit():
+        print(2)
+        print(form.e_mail.data)
+        if db.session.query(User).filter_by(email=form.e_mail.data).first() is None:
+            print(3)
+            # noinspection PyArgumentList
+
+            user_to_add = User(login=form.login.data, email=form.e_mail.data,
+                               password=generate_password_hash(form.password.data, salt_length=8))
+            db.session.add(user_to_add)
+            db.session.commit()
+            login_user(user_to_add)
+            return redirect(url_for('main_page'))
+        else:
+            flash("This e-mail already exists in database. Please chose another one.")
+            return redirect(url_for('register_page'))
+    return render_template('register.html', form=form)
 
 
 @app.route("/", methods=["POST", "GET"])
 def main_page():
+    db.create_all()
     if request.method == "POST":
         pizza_name = request.args.get("pizza_name")
         number_of_pizzas = request.form["total_pizza_number"]
@@ -87,19 +148,25 @@ def checkout_data_preparation():
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
-    item_list = checkout_data_preparation()
+    if len(basket_pizza_name_cost) == 0:
+        flash("Before payment, please chose items you would like to buy.")
+        return redirect(url_for("pizza_basket"))
+    if not current_user.is_authenticated:
+        flash("Before payment, please verify yourself or create account.")
+        return redirect(url_for("pizza_basket"))
+    else:
+        item_list = checkout_data_preparation()
+        try:
+            checkout_session = stripe.checkout.Session.create(
+                line_items=item_list,
+                mode='payment',
+                success_url=YOUR_DOMAIN + '/success',
+                cancel_url=YOUR_DOMAIN + '/',
+            )
+        except Exception as e:
+            return str(e)
 
-    try:
-        checkout_session = stripe.checkout.Session.create(
-            line_items=item_list,
-            mode='payment',
-            success_url=YOUR_DOMAIN + '/success',
-            cancel_url=YOUR_DOMAIN + '/',
-        )
-    except Exception as e:
-        return str(e)
-
-    return redirect(checkout_session.url, code=303)
+        return redirect(checkout_session.url, code=303)
 
 
 @app.route('/success')

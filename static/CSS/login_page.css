@@ -1,0 +1,29 @@
+h3 {
+    font-size: 30px;
+}
+
+    font-size: 20px;
+}
+
+.control-label {
+    margin: 10px 0;
+}
+
+.login-background-img {
+    background-image: url('/static/images/Login/login-image.png');
+    background-size: cover;
+    background-position: center center;
+}
+
+.submit-custom {
+    background-color: #00e673;
+    margin: 10px 0;
+}
+
+.submit-custom:hover {
+    background-color: #33ff99;
+}
+.container {
+    height: 35vh;
+}
+

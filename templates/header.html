@@ -14,6 +14,10 @@
       color: gold;
     }
 
+    .navbar-custom .navbar-text:hover {
+      color: white;
+    }
+
     .navbar-custom .navbar-title {
         text-decoration: none;
         color: white;
@@ -22,6 +26,8 @@
       color: #00b300;
       font-size: 23px;
     }
+
+
 
 </style>
 
@@ -34,6 +40,18 @@
     </a>
 
     <ul class="navbar-nav ms-auto nav-size">
+      {% if current_user.is_active %}
+        <li class="nav-item">
+          <a class="nav-link navbar-text" aria-current="page" href="{{ url_for('logout_page')}}">Logout</a>
+        </li>
+        {% else: %}
+        <li class="nav-item">
+          <a class="nav-link navbar-text" aria-current="page" href="{{ url_for('login_page') }}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link navbar-text" aria-current="page" href="{{ url_for('register_page')}}">Register</a>
+        </li>
+      {% endif %}
       {% if plus_sign:%}
         <p class="navbar-sign">+{{plus_sign}}</p>
       {% endif %}

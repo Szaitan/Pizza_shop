@@ -18,21 +18,23 @@
     <div class="row">
         <table class="table table-dark table-striped table-bordered table-text">
             <thead>
-            <tr>
+            <tr class="text-center">
                 <th scope="col">Product</th>
+                <th scope="col">Number</th>
                 <th scope="col">Cost</th>
             </tr>
             </thead>
             <tbody>
                 {% for data in basket: %}
-                <tr class>
+                <tr class="text-center">
                     <td>{{data[0]}}</td>
-                    <td>{{data[1]}} PLN</td>
+                    <td>{{data[1]}}</td>
+                    <td>{{data[2]}} PLN</td>
                 </tr>
                 {% endfor %}
-                <tr class="mx-auto">
+                <tr class="mx-auto text-center">
                     <td><p class="text-total">Total</p></td>
-                    <td><p class="text-total">{{ total_cost }} PLN</p></td>
+                    <td colspan="2"><p class="text-total text-center">{{ total_cost }} PLN</p></td>
                 </tr>
             </tbody>
         </table>

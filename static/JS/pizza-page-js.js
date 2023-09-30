@@ -30,7 +30,7 @@ $(document).ready(function() {
 
         // Update the hidden input field value
         $("#total_pizza_cost").val(totalCost);
-
+        $("#total_pizza_number").val(numberOfPizzas);
         $("#pizza_cost").text(totalCost);
     }
 

@@ -38,10 +38,11 @@
         <h2>How many Pizzas:</h2>
         <div class="mx-auto">
             <button class="size-buttons decrement">-</button>
-            <p id="number">1</p>
+            <span id="number">1</span>
             <button class="size-buttons increment">+</button>
             <form method="post" action="{{ url_for('main_page', pizza_name=pizza_name) }}">
                 <input type="hidden" name="total_pizza_cost" id="total_pizza_cost" value="{{ pizza_cost }}">
+                <input type="hidden" name="total_pizza_number" id="total_pizza_number" value="{{ number }}">
                 <button class="ready-buttons" type="submit">Add Pizza</button>
             </form>
         </div>
